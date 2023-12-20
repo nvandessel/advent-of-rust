@@ -1,6 +1,6 @@
-mod year2023;
+mod year2015;
 
-use year2023::day01::Day1;
+use year2015::day01::Day1;
 
 fn main() {
     let day1 = Day1::new();
