@@ -1,18 +1,15 @@
-use crate::Solution;
+use crate::{Solution, Year};
 
-pub mod day01;
-pub mod day02;
+mod day01;
+mod day02;
 
-fn run(s: impl Solution){
-    println!("{}",  s.solve_part1());
-    println!("{}",  s.solve_part2());
+pub struct Year2015;
+
+impl Year for Year2015 {
+    fn get_days(&self) -> Vec<Box<dyn Solution>> {
+        vec![
+            Box::new(day01::Day1::new()),
+            Box::new(day02::Day2::new()),
+        ]
+    }
 }
-
-pub fn run_all_days(){
-    let day1 = day01::Day1::new();
-    let day2 = day02::Day2::new();
-
-    run(day1);
-    run(day2);
-}
-

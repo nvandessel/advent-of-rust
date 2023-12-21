@@ -8,6 +8,16 @@ pub struct Day2{
 }
 
 impl Day2{
+    pub fn new() -> Self {
+        match Input::read(2015, 2) {
+            Ok(input) => Day2 { input },
+            Err(err) => {
+                eprintln!("Error reading input: {}", err);
+                std::process::exit(1);
+            }
+        }
+    }
+
     fn extract_dimensions(&self) -> Vec<(usize, usize, usize)>{
         self.input
             .iter()
@@ -42,15 +52,6 @@ impl Day2{
 }
 
 impl Solution for Day2 {
-    fn new() -> Self {
-        match Input::read(2015, 2) {
-            Ok(input) => Day2 { input },
-            Err(err) => {
-                eprintln!("Error reading input: {}", err);
-                std::process::exit(1);
-            }
-        }
-    }
 
     fn solve_part1(&self) -> String {
         let dimensions = self.extract_dimensions();

@@ -6,6 +6,16 @@ pub struct Day1{
 }
 
 impl Day1{
+    pub fn new() -> Self {
+        match Input::read(2015, 1) {
+            Ok(input) => Day1 { input },
+            Err(err) => {
+                eprintln!("Error reading input: {}", err);
+                std::process::exit(1);
+            }
+        }
+    }
+
     fn count_chars(&self, as_index: bool) -> i32{
         let mut count = 0;
 
@@ -26,15 +36,6 @@ impl Day1{
 }
 
 impl Solution for Day1 {
-    fn new() -> Self {
-        match Input::read(2015, 1) {
-            Ok(input) => Day1 { input },
-            Err(err) => {
-                eprintln!("Error reading input: {}", err);
-                std::process::exit(1);
-            }
-        }
-    }
 
     fn solve_part1(&self) -> String {
         return self.count_chars(false).to_string();
