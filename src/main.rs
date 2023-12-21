@@ -1,10 +1,12 @@
 mod year2015;
 
-use year2015::day01::Day1;
 
 fn main() {
-    let day1 = Day1::new();
+    year2015::run_all_days();
+}
 
-    println!("{}", day1.solve_part1());
-    println!("{}", day1.solve_part2())
+pub trait Solution{
+    fn new() -> Self;
+    fn solve_part1(&self) -> String;
+    fn solve_part2(&self) -> String;
 }
