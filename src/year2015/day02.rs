@@ -1,6 +1,5 @@
 use advent_of_rust::input_provider::Input;
-use crate::Solution;
-
+use advent_of_rust::runner::Solution;
 use itertools::sorted;
 
 pub struct Day2{
@@ -23,11 +22,6 @@ impl Day2{
             .iter()
             .map(|s| {
                 let parts: Vec<&str> = s.split('x').collect();
-
-                if parts.len() != 3 {
-                    std::process::exit(-1);
-                }
-
                 return (
                     parts[0].parse().unwrap(),
                     parts[1].parse().unwrap(),
@@ -36,18 +30,16 @@ impl Day2{
             }).collect()
     }
 
-    fn surface_area(&self, l: usize, w: usize, h:usize) -> usize{
+    fn surface_area(&self, l: &usize, w: &usize, h: &usize) -> usize{
         return 2*l*w + 2*w*h + 2*h*l;
     }
 
-    fn smallest_sides(&self, l: usize, w: usize, h:usize) -> (usize, usize){
+    fn smallest_sides(&self, l: &usize, w: &usize, h: &usize) -> (usize, usize){
         let sides = [l, w, h];
         let mut sorted_sides = sorted(&sides);
-
         let min1 = *sorted_sides.next().unwrap();
         let min2 = *sorted_sides.next().unwrap();
-
-        (min1, min2)
+        return (*min1, *min2);
     }
 }
 
@@ -57,8 +49,8 @@ impl Solution for Day2 {
         let dimensions = self.extract_dimensions();
         let result: usize = dimensions.iter()
             .map(|(l, w, h)| {
-                let (min1, _min2) = self.smallest_sides(*l, *w, *h);
-                return self.surface_area(*l, *w, *h) + min1;
+                let (min1, _min2) = self.smallest_sides(l, w, h);
+                return self.surface_area(l, w, h) + min1;
             })
             .sum();
         return result.to_string();
@@ -68,7 +60,7 @@ impl Solution for Day2 {
         let dimensions = self.extract_dimensions();
         let result: usize = dimensions.iter()
             .map(|(l, w, h)| {
-                let (min1, min2) = self.smallest_sides(*l, *w, *h);
+                let (min1, min2) = self.smallest_sides(l, w, h);
                 let ribbon = min1+min1+min2+min2;
                 let bow = l*w*h;
                 return ribbon + bow;

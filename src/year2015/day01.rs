@@ -1,5 +1,5 @@
 use advent_of_rust::input_provider::Input;
-use crate::Solution;
+use advent_of_rust::runner::Solution;
 
 pub struct Day1{
     input: Vec<String>,
@@ -36,7 +36,6 @@ impl Day1{
 }
 
 impl Solution for Day1 {
-
     fn solve_part1(&self) -> String {
         return self.count_chars(false).to_string();
     }

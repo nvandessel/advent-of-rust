@@ -1,4 +1,4 @@
-use crate::{Solution, Year};
+use advent_of_rust::runner::{Solution, Year};
 
 mod day01;
 mod day02;
